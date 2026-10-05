@@ -1,0 +1,10 @@
+framework module uInterfaceNative {
+  umbrella header "uInterfaceNative.h"
+  export *
+
+  module * { export * }
+}
+
+module uInterfaceNative.Swift {
+  header "uInterfaceNative-Swift.h"
+}

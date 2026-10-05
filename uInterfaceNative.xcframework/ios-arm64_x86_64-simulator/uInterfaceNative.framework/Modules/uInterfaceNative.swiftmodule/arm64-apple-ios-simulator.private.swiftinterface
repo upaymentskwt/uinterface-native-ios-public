@@ -1,0 +1,136 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.4 effective-5.10 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)
+// swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -language-mode 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name uInterfaceNative
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.4
+import Foundation
+import PassKit
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_exported import uInterfaceNative
+public struct ApplePayConfiguration : Swift::Equatable {
+  public let merchantIdentifier: Swift::String
+  public let countryCode: Swift::String
+  public let supportedNetworks: [PassKit::PKPaymentNetwork]
+  public let merchantCapabilities: PassKit::PKMerchantCapability
+  public let merchantName: Swift::String?
+  public let requiresActiveCards: Swift::Bool
+  public init(merchantIdentifier: Swift::String, countryCode: Swift::String = "KW", supportedNetworks: [PassKit::PKPaymentNetwork] = [.visa, .masterCard, .mada, .amex], merchantCapabilities: PassKit::PKMerchantCapability = [.capability3DS, .capabilityDebit, .capabilityCredit], merchantName: Swift::String? = nil, requiresActiveCards: Swift::Bool = false)
+  public static func == (a: uInterfaceNative::ApplePayConfiguration, b: uInterfaceNative::ApplePayConfiguration) -> Swift::Bool
+}
+@frozen public enum ApplePayError : Swift::Error, Foundation::LocalizedError, Swift::CustomStringConvertible, Swift::Equatable {
+  case deviceNotSupported
+  case noSupportedCards
+  case missingMerchantIdentifier
+  case invalidAmount(Swift::Double)
+  case invalidCurrency(Swift::String)
+  case invalidCountryCode(Swift::String)
+  case userCancelled
+  case authorizationFailed(Swift::String?)
+  case tokenSerializationFailed(Swift::String)
+  case passKitError(Swift::String)
+  case unknown(Swift::String)
+  public var errorDescription: Swift::String? {
+    get
+  }
+  public var description: Swift::String {
+    get
+  }
+  public static func == (a: uInterfaceNative::ApplePayError, b: uInterfaceNative::ApplePayError) -> Swift::Bool
+}
+@objc public class ApplePayProcessor : ObjectiveC::NSObject, uInterfaceNative::ApplePayProcessorProtocol {
+  final public let configuration: uInterfaceNative::ApplePayConfiguration
+  public init(configuration: uInterfaceNative::ApplePayConfiguration, authorizerFactory: any uInterfaceNative::PKPaymentAuthorizerFactory = DefaultPKPaymentAuthorizerFactory())
+  public func canMakePayments() -> Swift::Bool
+  public func canMakePaymentsWithActiveCards() -> Swift::Bool
+  public func makePaymentRequest(amount: Swift::Double, currency: Swift::String, summaryItems: [uInterfaceNative::ApplePaySummaryItem]?) throws -> PassKit::PKPaymentRequest
+  public func startPayment(amount: Swift::Double, currency: Swift::String, summaryItems: [uInterfaceNative::ApplePaySummaryItem]?, completion: @escaping (Swift::Result<uInterfaceNative::ApplePayPaymentTokenPayload, uInterfaceNative::ApplePayError>) -> Swift::Void)
+  public func extractPaymentTokenPayload(from payment: PassKit::PKPayment) throws -> uInterfaceNative::ApplePayPaymentTokenPayload
+  @objc deinit
+}
+extension uInterfaceNative::ApplePayProcessor : PassKit::PKPaymentAuthorizationControllerDelegate {
+  @_Concurrency::MainActor @preconcurrency @objc dynamic public func paymentAuthorizationController(_ controller: PassKit::PKPaymentAuthorizationController, didAuthorizePayment payment: PassKit::PKPayment, handler completion: @escaping (PassKit::PKPaymentAuthorizationResult) -> Swift::Void)
+  @_Concurrency::MainActor @preconcurrency @objc dynamic public func paymentAuthorizationControllerDidFinish(_ controller: PassKit::PKPaymentAuthorizationController)
+}
+public protocol ApplePayProcessorProtocol : AnyObject {
+  var configuration: uInterfaceNative::ApplePayConfiguration { get }
+  func canMakePayments() -> Swift::Bool
+  func canMakePaymentsWithActiveCards() -> Swift::Bool
+  func makePaymentRequest(amount: Swift::Double, currency: Swift::String, summaryItems: [uInterfaceNative::ApplePaySummaryItem]?) throws -> PassKit::PKPaymentRequest
+  func startPayment(amount: Swift::Double, currency: Swift::String, summaryItems: [uInterfaceNative::ApplePaySummaryItem]?, completion: @escaping (Swift::Result<uInterfaceNative::ApplePayPaymentTokenPayload, uInterfaceNative::ApplePayError>) -> Swift::Void)
+}
+public struct ApplePaySummaryItem : Swift::Equatable {
+  public let label: Swift::String
+  public let amount: Foundation::NSDecimalNumber
+  public let type: PassKit::PKPaymentSummaryItemType
+  public init(label: Swift::String, amount: Swift::Double, type: PassKit::PKPaymentSummaryItemType = .final)
+  public init(label: Swift::String, decimalAmount: Foundation::NSDecimalNumber, type: PassKit::PKPaymentSummaryItemType = .final)
+  public func toPKPaymentSummaryItem() -> PassKit::PKPaymentSummaryItem
+  public static func == (lhs: uInterfaceNative::ApplePaySummaryItem, rhs: uInterfaceNative::ApplePaySummaryItem) -> Swift::Bool
+}
+public struct ApplePayPaymentHeader : Swift::Codable, Swift::Equatable {
+  public let publicKeyHash: Swift::String?
+  public let ephemeralPublicKey: Swift::String?
+  public let transactionId: Swift::String?
+  public let wrappedKey: Swift::String?
+  public init(publicKeyHash: Swift::String? = nil, ephemeralPublicKey: Swift::String? = nil, transactionId: Swift::String? = nil, wrappedKey: Swift::String? = nil)
+  public static func == (lhs: uInterfaceNative::ApplePayPaymentHeader, rhs: uInterfaceNative::ApplePayPaymentHeader) -> Swift::Bool
+  public func encode(to encoder: any Swift::Encoder) throws
+  public init(from decoder: any Swift::Decoder) throws
+}
+public struct ApplePayPaymentData : Swift::Codable, Swift::Equatable {
+  public let data: Swift::String
+  public let signature: Swift::String
+  public let version: Swift::String
+  public let header: uInterfaceNative::ApplePayPaymentHeader
+  public init(data: Swift::String, signature: Swift::String, version: Swift::String, header: uInterfaceNative::ApplePayPaymentHeader)
+  public static func == (lhs: uInterfaceNative::ApplePayPaymentData, rhs: uInterfaceNative::ApplePayPaymentData) -> Swift::Bool
+  public func encode(to encoder: any Swift::Encoder) throws
+  public init(from decoder: any Swift::Decoder) throws
+}
+public struct ApplePayPaymentMethodInfo : Swift::Codable, Swift::Equatable {
+  public let type: Swift::String?
+  public let network: Swift::String?
+  public let displayName: Swift::String?
+  public init(type: Swift::String? = nil, network: Swift::String? = nil, displayName: Swift::String? = nil)
+  public static func == (lhs: uInterfaceNative::ApplePayPaymentMethodInfo, rhs: uInterfaceNative::ApplePayPaymentMethodInfo) -> Swift::Bool
+  public func encode(to encoder: any Swift::Encoder) throws
+  public init(from decoder: any Swift::Decoder) throws
+}
+public struct ApplePayPaymentTokenPayload : Swift::Codable, Swift::Equatable {
+  public let transactionIdentifier: Swift::String?
+  public let paymentData: uInterfaceNative::ApplePayPaymentData
+  public let paymentMethod: uInterfaceNative::ApplePayPaymentMethodInfo
+  public init(transactionIdentifier: Swift::String? = nil, paymentData: uInterfaceNative::ApplePayPaymentData, paymentMethod: uInterfaceNative::ApplePayPaymentMethodInfo)
+  public static func == (lhs: uInterfaceNative::ApplePayPaymentTokenPayload, rhs: uInterfaceNative::ApplePayPaymentTokenPayload) -> Swift::Bool
+  public func encode(to encoder: any Swift::Encoder) throws
+  public init(from decoder: any Swift::Decoder) throws
+}
+final public class PKPaymentAuthorizationControllerBridge : uInterfaceNative::PKPaymentAuthorizing {
+  final public var delegate: (any PassKit::PKPaymentAuthorizationControllerDelegate)? {
+    get
+    set
+  }
+  public init(paymentRequest: PassKit::PKPaymentRequest)
+  final public func present(completion: ((Swift::Bool) -> Swift::Void)?)
+  final public func dismiss(completion: (() -> Swift::Void)?)
+  @objc deinit
+}
+final public class DefaultPKPaymentAuthorizerFactory : uInterfaceNative::PKPaymentAuthorizerFactory {
+  public init()
+  final public func canMakePayments() -> Swift::Bool
+  final public func canMakePayments(usingNetworks networks: [PassKit::PKPaymentNetwork], capabilities: PassKit::PKMerchantCapability) -> Swift::Bool
+  final public func makeAuthorizer(request: PassKit::PKPaymentRequest) -> any uInterfaceNative::PKPaymentAuthorizing
+  @objc deinit
+}
+public protocol PKPaymentAuthorizing : AnyObject {
+  var delegate: (any PassKit::PKPaymentAuthorizationControllerDelegate)? { get set }
+  func present(completion: ((Swift::Bool) -> Swift::Void)?)
+  func dismiss(completion: (() -> Swift::Void)?)
+}
+public protocol PKPaymentAuthorizerFactory {
+  func canMakePayments() -> Swift::Bool
+  func canMakePayments(usingNetworks networks: [PassKit::PKPaymentNetwork], capabilities: PassKit::PKMerchantCapability) -> Swift::Bool
+  func makeAuthorizer(request: PassKit::PKPaymentRequest) -> any uInterfaceNative::PKPaymentAuthorizing
+}
