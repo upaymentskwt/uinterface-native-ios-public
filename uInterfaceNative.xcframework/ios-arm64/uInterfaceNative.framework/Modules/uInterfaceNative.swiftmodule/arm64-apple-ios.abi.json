@@ -329,9 +329,86 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "supportedCountries",
+            "printedName": "supportedCountries",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Set<Swift.String>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Set",
+                    "printedName": "Swift.Set<Swift.String>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sh"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16uInterfaceNative21ApplePayConfigurationV18supportedCountriesShySSGSgvp",
+            "mangledName": "$s16uInterfaceNative21ApplePayConfigurationV18supportedCountriesShySSGSgvp",
+            "moduleName": "uInterfaceNative",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Set<Swift.String>?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Set",
+                        "printedName": "Swift.Set<Swift.String>",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sh"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16uInterfaceNative21ApplePayConfigurationV18supportedCountriesShySSGSgvg",
+                "mangledName": "$s16uInterfaceNative21ApplePayConfigurationV18supportedCountriesShySSGSgvg",
+                "moduleName": "uInterfaceNative",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(merchantIdentifier:countryCode:supportedNetworks:merchantCapabilities:merchantName:requiresActiveCards:)",
+            "printedName": "init(merchantIdentifier:countryCode:supportedNetworks:merchantCapabilities:merchantName:requiresActiveCards:supportedCountries:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -395,11 +472,34 @@
                 "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
                 "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Set<Swift.String>?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Set",
+                    "printedName": "Swift.Set<Swift.String>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sh"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:16uInterfaceNative21ApplePayConfigurationV18merchantIdentifier11countryCode17supportedNetworks0F12Capabilities0F4Name19requiresActiveCardsACSS_SSSaySo16PKPaymentNetworkaGSo20PKMerchantCapabilityVSSSgSbtcfc",
-            "mangledName": "$s16uInterfaceNative21ApplePayConfigurationV18merchantIdentifier11countryCode17supportedNetworks0F12Capabilities0F4Name19requiresActiveCardsACSS_SSSaySo16PKPaymentNetworkaGSo20PKMerchantCapabilityVSSSgSbtcfc",
+            "usr": "s:16uInterfaceNative21ApplePayConfigurationV18merchantIdentifier11countryCode17supportedNetworks0F12Capabilities0F4Name19requiresActiveCards0J9CountriesACSS_SSSaySo16PKPaymentNetworkaGSo20PKMerchantCapabilityVSSSgSbShySSGSgtcfc",
+            "mangledName": "$s16uInterfaceNative21ApplePayConfigurationV18merchantIdentifier11countryCode17supportedNetworks0F12Capabilities0F4Name19requiresActiveCards0J9CountriesACSS_SSSaySo16PKPaymentNetworkaGSo20PKMerchantCapabilityVSSSgSbShySSGSgtcfc",
             "moduleName": "uInterfaceNative",
             "declAttributes": [
               "AccessControl",
@@ -4773,14 +4873,14 @@
     {
       "filePath": "\/Users\/siyahulhaq\/Work\/UPayments\/SDKs\/uInterfaceNative\/Sources\/uInterfaceNative\/Models\/ApplePayConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 2035,
+      "offset": 2369,
       "length": 4,
       "value": "\"KW\""
     },
     {
       "filePath": "\/Users\/siyahulhaq\/Work\/UPayments\/SDKs\/uInterfaceNative\/Sources\/uInterfaceNative\/Models\/ApplePayConfiguration.swift",
       "kind": "BooleanLiteral",
-      "offset": 2306,
+      "offset": 2640,
       "length": 5,
       "value": "false"
     }

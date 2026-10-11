@@ -16,7 +16,8 @@ public struct ApplePayConfiguration : Swift::Equatable {
   public let merchantCapabilities: PassKit::PKMerchantCapability
   public let merchantName: Swift::String?
   public let requiresActiveCards: Swift::Bool
-  public init(merchantIdentifier: Swift::String, countryCode: Swift::String = "KW", supportedNetworks: [PassKit::PKPaymentNetwork] = [.visa, .masterCard, .mada, .amex], merchantCapabilities: PassKit::PKMerchantCapability = [.capability3DS, .capabilityDebit, .capabilityCredit], merchantName: Swift::String? = nil, requiresActiveCards: Swift::Bool = false)
+  public let supportedCountries: Swift::Set<Swift::String>?
+  public init(merchantIdentifier: Swift::String, countryCode: Swift::String = "KW", supportedNetworks: [PassKit::PKPaymentNetwork] = [.visa, .masterCard, .mada, .amex], merchantCapabilities: PassKit::PKMerchantCapability = [.capability3DS, .capabilityDebit, .capabilityCredit], merchantName: Swift::String? = nil, requiresActiveCards: Swift::Bool = false, supportedCountries: Swift::Set<Swift::String>? = nil)
   public static func == (a: uInterfaceNative::ApplePayConfiguration, b: uInterfaceNative::ApplePayConfiguration) -> Swift::Bool
 }
 @frozen public enum ApplePayError : Swift::Error, Foundation::LocalizedError, Swift::CustomStringConvertible, Swift::Equatable {
