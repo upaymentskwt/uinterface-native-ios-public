@@ -6,3 +6,4 @@ xcuserdata/
 *.xcodeproj/xcuserdata/
 DerivedData/
 .swiftpm/
+*.zip
