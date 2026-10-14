@@ -180,7 +180,7 @@ Use the same authentication headers your existing UPayments API integration alre
 | Environment | Base URL                                   |
 | :---------- | :----------------------------------------- |
 | Sandbox     | `https://sandboxapi.upayments.com/api/v1/` |
-| Production  | `https://api.upayments.com/api/v1/`        |
+| Production  | `https://uapi.upayments.com/api/v1/`        |
 
 **Response:**
 
@@ -641,7 +641,7 @@ Errors from the **charge API** come from UPayments, the same as for your other c
 
 ## 15. Go-Live Checklist
 
-- [ ] Production base URL (`https://api.upayments.com/api/v1/`) and production API key, kept on your backend only
+- [ ] Production base URL (`https://uapi.upayments.com/api/v1/`) and production API key, kept on your backend only
 - [ ] Button status API called with `source=native-sdk` before showing payment buttons
 - [ ] Country, networks and capabilities come from the API, not hard-coded
 - [ ] Merchant ID in Xcode matches the one registered with UPayments; Apple Pay Payment Processing Certificate is active
